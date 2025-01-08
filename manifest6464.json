@@ -1,0 +1,17 @@
+{
+    "name": "Livegrid 64x64 installer",
+    "version": "1.0",
+    "builds": [
+      {
+        "chipFamily": "ESP32-S3",
+        "improv": false,
+        "parts": [
+          { "path": "firmware6464/bootloader.bin", "offset": 4096 },
+          { "path": "firmware6464/partitions.bin", "offset": 32768 },
+          { "path": "firmware6464/boot_app0.bin", "offset": 57344 },
+          { "path": "firmware6464/firmware.bin", "offset": 65536 },
+          { "path": "firmware6464/littlefs.bin", "offset": 6750208 }
+        ]
+      }
+    ]
+  }
