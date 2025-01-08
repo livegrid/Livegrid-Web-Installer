@@ -1,6 +1,6 @@
 {
     "name": "Livegrid Web Installer",
-    "version": "0.1",
+    "version": "1.0",
     "builds": [
       {
         "chipFamily": "ESP32-S3",
