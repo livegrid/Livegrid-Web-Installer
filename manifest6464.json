@@ -6,11 +6,11 @@
         "chipFamily": "ESP32-S3",
         "improv": false,
         "parts": [
-          { "path": "firmware6464/bootloader.bin", "offset": 4096 },
-          { "path": "firmware6464/partitions.bin", "offset": 32768 },
-          { "path": "firmware6464/boot_app0.bin", "offset": 57344 },
-          { "path": "firmware6464/firmware.bin", "offset": 65536 },
-          { "path": "firmware6464/littlefs.bin", "offset": 6750208 }
+          { "path": "bootloader.bin", "offset": "0x1000" },
+          { "path": "partitions.bin", "offset": "0x8000" },
+          { "path": "boot_app0.bin", "offset": "0xE000" },
+          { "path": "firmware.bin", "offset": "0x10000" },
+          { "path": "littlefs.bin", "offset": "0x670000" }
         ]
       }
     ]
