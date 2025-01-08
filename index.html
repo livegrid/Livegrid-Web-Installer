@@ -1,45 +1,116 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>ESP Web Tools Test</title>
-    <!-- Add meta viewport for better mobile support -->
+    <title>Livegrid Web Installer</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Fix manifest path -->
     <script type="module" src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module"></script>
+    <!-- Add CSS styling -->
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .content {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .logo {
+            max-width: 200px;
+            margin: 0 auto 2rem;
+            display: block;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .radios {
+            list-style: none;
+            padding: 0;
+            margin: 2rem 0;
+        }
+        .radios li {
+            margin: 1rem 0;
+        }
+        .radios label {
+            display: block;
+            padding: 1rem;
+            background: #f8f8f8;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .radios label:hover {
+            background: #eee;
+        }
+        .button-row {
+            margin: 2rem 0;
+        }
+        .invisible {
+            display: none;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 2rem;
+            color: #666;
+        }
+        .footer a {
+            color: #333;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
-
 
 <body>
     <div class="content">
-      <h1>Livegrid Web Installer</h1>
-      <p>Select your product.</p>
-      <ul class="radios">
-        <li>
-          <label><input type="radio" name="type" value="6464" /> 64x64 pixels</label>
-        </li>
-        <li>
-          <label><input type="radio" name="type" value="7878" /> 78x78 pixels (upcycled)</label>
-        </li>
-      </ul>
-      <p class="button-row" align="center">
-        <esp-web-install-button class="invisible"></esp-web-install-button>
-      </p>
+        <!-- Add logo -->
+        <img src="livegrid_logo.svg" alt="Livegrid Logo" class="logo">
+        <h1>Livegrid Web Installer</h1>
+        <p>The installation will factory reset your device.</p>
+        <p>Please select your product below to begin the installation:</p>
+        <ul class="radios">
+            <li>
+                <label><input type="radio" name="type" value="7878"> 78x78 pixels (upcycled)</label>
+            </li>
+            <li>
+                <label><input type="radio" name="type" value="6464"> 64x64 pixels</label>
+            </li>
+        </ul>
+        <p class="button-row" align="center">
+            <esp-web-install-button class="invisible"></esp-web-install-button>
+        </p>
+        <h3>Notes - </h2>
+        <ul>
+            <li>
+                If the installation fails, try pressing 'RST' button while holding the 'IO0' button on the main controller.
+            </li>
+            <li>
+                If you see nothing or weird patterns after upload, you have uploaded the wrong version.
+            </li>
+        </ul>
 
-      <div class="footer">
-        <a href="https://livegrid.tech"
-          >Livegrid.tech</a
-        > &mdash;
-        Installer powered by <a href="https://esphome.github.io/esp-web-tools/">ESP Web Tools</a>.
+        <div class="footer">
+            <a href="https://livegrid.tech">livegrid.tech</a> &mdash;
+            Installer powered by <a href="https://esphome.github.io/esp-web-tools/">ESP Web Tools</a>
+        </div>
     </div>
+    <!-- Keep the existing script -->
     <script>
-      document.querySelectorAll('input[name="type"]').forEach(radio =>
-        radio.addEventListener("change", () => {
-          const button = document.querySelector('esp-web-install-button');
-          button.manifest = `./manifest${radio.value}.json`;
-          button.classList.remove('invisible');
-        }
-      ));
+        document.querySelectorAll('input[name="type"]').forEach(radio =>
+            radio.addEventListener("change", () => {
+                const button = document.querySelector('esp-web-install-button');
+                button.manifest = `./manifest${radio.value}.json`;
+                button.classList.remove('invisible');
+            }
+        ));
     </script>
-  </body>
-
+</body>
 </html>
