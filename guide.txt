@@ -1,4 +1,4 @@
-1. activate env with 'esptoolenv\Scripts\activate' in this folder
+1. activate env with 'esptoolenv\Scripts\activate' in esptool folder, go one up
 
 2. TEST = esptool --chip esp32s3 --baud 921600 write_flash --flash_mode dio --flash_freq 40m --flash_size 8MB 0x0 bootloader.bin 0x8000 partitions.bin 0xe000 boot_app0.bin 0x10000 firmware.bin 0x670000 littlefs.bin
 
