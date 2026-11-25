@@ -1,6 +1,6 @@
 {
     "name": "Livegrid 78x78 installer",
-    "version": "1.0",
+    "version": "2.3.0",
     "builds": [
       {
         "chipFamily": "ESP32-S3",
