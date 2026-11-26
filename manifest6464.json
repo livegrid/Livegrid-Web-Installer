@@ -1,6 +1,6 @@
 {
     "name": "Livegrid 64x64 installer",
-    "version": "2.4.0",
+    "version": "2.4.1",
     "builds": [
       {
         "chipFamily": "ESP32-S3",

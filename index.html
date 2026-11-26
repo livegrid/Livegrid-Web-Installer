@@ -27,7 +27,30 @@
         h1 {
             color: #333;
             text-align: center;
+            margin-bottom: 0.5rem;
+        }
+        .version-badge {
+            text-align: center;
             margin-bottom: 1.5rem;
+            color: #555;
+            font-size: 0.95rem;
+        }
+        .version-badge span {
+            display: inline-block;
+            background: #eef2ff;
+            color: #3730a3;
+            font-weight: 600;
+            padding: 0.2rem 0.65rem;
+            border-radius: 999px;
+            font-size: 0.9rem;
+        }
+        .version-badge a {
+            color: #4f46e5;
+            text-decoration: none;
+            margin-left: 0.5rem;
+        }
+        .version-badge a:hover {
+            text-decoration: underline;
         }
         .radios {
             list-style: none;
@@ -74,6 +97,10 @@
         <!-- Add logo -->
         <img src="livegrid_logo.svg" alt="Livegrid Logo" class="logo">
         <h1>Livegrid Web Installer</h1>
+        <p class="version-badge">
+            Firmware <span id="firmware-version">v2.4.1</span>
+            <a href="https://livegrid.github.io/changelog/" target="_blank" rel="noopener">What's new</a>
+        </p>
         <p>The installation will factory reset your device.</p>
         <p>Please select your product below to begin the installation:</p>
         <ul class="radios">
@@ -104,11 +131,26 @@
     </div>
     <!-- Keep the existing script -->
     <script>
+        const versionEl = document.getElementById('firmware-version');
+        function updateVersionFromManifest(manifestUrl) {
+            fetch(manifestUrl, { cache: 'no-cache' })
+                .then(r => r.ok ? r.json() : null)
+                .then(data => {
+                    if (data && data.version) {
+                        versionEl.textContent = `v${data.version}`;
+                    }
+                })
+                .catch(() => {});
+        }
+        updateVersionFromManifest('./manifest7878.json');
+
         document.querySelectorAll('input[name="type"]').forEach(radio =>
             radio.addEventListener("change", () => {
+                const manifestUrl = `./manifest${radio.value}.json`;
                 const button = document.querySelector('esp-web-install-button');
-                button.manifest = `./manifest${radio.value}.json`;
+                button.manifest = manifestUrl;
                 button.classList.remove('invisible');
+                updateVersionFromManifest(manifestUrl);
             }
         ));
     </script>
